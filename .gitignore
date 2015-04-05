@@ -11,4 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
-vendor/ruby
+vendor/cache
+vendor/bundle

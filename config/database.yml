@@ -15,7 +15,7 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
+  adapter: sqlite3
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -23,7 +23,8 @@ default: &default
 
 development:
   <<: *default
-  database: bdd-starter_development
+  database: db/bdd_starter_development.sqlite3
+  # database: bdd_starter_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -55,9 +56,9 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
+test: &test
   <<: *default
-  database: bdd-starter_test
+  database: db/test/bdd_starter_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +81,9 @@ test:
 #
 production:
   <<: *default
-  database: bdd-starter_production
-  username: bdd-starter
-  password: <%= ENV['BDD-STARTER_DATABASE_PASSWORD'] %>
+  database: bdd_starter_production
+  username: bdd_starter
+  password: <%= ENV['BDD_STARTER_DATABASE_PASSWORD'] %>
+
+cucumber:
+  <<: *test
